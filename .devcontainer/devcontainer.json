@@ -1,0 +1,14 @@
+{
+    "name": "VOD-Project-Dev",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspaces/vod-project",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack"
+            ]
+        }
+    },
+    "remoteUser": "vscode"
+}

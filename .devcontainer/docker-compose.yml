@@ -1,0 +1,49 @@
+version: '3.8'
+name: vod-project
+services:
+  app:
+    container_name: vod-app
+    init: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      TZ: Asia/Taipei
+    volumes:
+      - ..:/workspaces/vod-project:cached   # 專案程式碼
+      - maven-repo:/home/vscode/.m2          # Maven 零件庫
+    networks:
+      - vod-net
+    command: ["sleep", "infinity"] 
+
+  db:
+    container_name: vod-mysql
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "YOUR_MYSQL_ROOT_PASSWORD"
+      TZ: Asia/Taipei
+    volumes:
+      - ../docker-data/mysql:/var/lib/mysql     # 持久化資料庫
+    networks:
+      - vod-net
+
+  minio:
+    container_name: vod-minio
+    image: minio/minio
+    environment:
+      MINIO_ROOT_USER: "YOUR_MINIO_ROOT_USER"
+      MINIO_ROOT_PASSWORD: "YOUR_MINIO_ROOT_PASSWORD"
+      TZ: Asia/Taipei
+    volumes:
+      - ../docker-data/minio:/data              # 持久化影片檔案
+    networks:
+      - vod-net
+    command: server /data --console-address ":9001"
+
+networks:
+  vod-net:
+    name: vod-net
+    driver: bridge
+
+volumes:
+  maven-repo:

@@ -1,0 +1,18 @@
+# Maven 編譯產出
+target/
+*.class
+*.jar
+
+# 專案日誌
+logs/
+*.log
+
+# Docker 資料庫數據 (只忽略資料，保留資料夾架構)
+docker-data/*
+!docker-data/**/.gitkeep
+
+# IDE 個人設定
+.vscode/
+.idea/
+*.iml
+.DS_Store
