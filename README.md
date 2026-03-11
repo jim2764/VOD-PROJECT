@@ -8,6 +8,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Container-blue.svg)](https://www.docker.com/)
 [![FFmpeg](https://img.shields.io/badge/FFmpeg-Multimedia-orange.svg)](https://ffmpeg.org/)
 
+<img width="1090" height="497" alt="Image" src="https://github.com/user-attachments/assets/a48bf59e-7303-4742-8ba1-c1cd4d372e98" />
 本專案是一個影片管理平台，實現了從影片非同步上傳、處理狀態追蹤到 HLS 自適應串流觀看的完整流程。
 
 
@@ -42,12 +43,16 @@
 ## 🏗️ 系統架構
 
 ### 影片上傳與非同步處理
+<img width="713" height="795" alt="Image" src="https://github.com/user-attachments/assets/426fce2f-3328-4919-8682-50e325f47d9e" />
+
 * **安全授權**：Vue 向 Spring Boot 申請 Pre-signed Policy，確保上傳行為合法。
 * **效能直傳**：Vue 跳過後端直接上傳影片至 MinIO，節省Spring Boot伺服器頻寬。
 * **事件觸發**：MinIO 通知後端啟動 FFprobe 驗證與 FFmpeg 轉碼任務。
 * **狀態追蹤**：Vue 透過 Polling 即時獲取影片狀態。
 
 ### 安全串流播放
+<img width="711" height="756" alt="Image" src="https://github.com/user-attachments/assets/bb1fce36-f5e4-4cb8-83cb-10d1012e58f3" />
+
 * **網址簽名**：Spring Boot 產出帶有 MD5 數位簽章與時效的 Signed URL。
 * **安全校驗**：Nginx Secure Link 即時比對簽章，防止非法盜連。
 * **串流播放**：驗證通過後由 Nginx 分發 HLS 檔案，支援自適應畫質播放。
@@ -122,6 +127,6 @@ docker exec -d front-app /bin/sh -c "npm run dev --host 0.0.0.0"
 
 
 ## 📬 聯絡資訊
-* **姓名**：林俊丞
+* **姓名**：Jim Lin
 * **Email**：jim2345678@gmail.com
 * **Github**: [jim2764](https://github.com/jim2764)
